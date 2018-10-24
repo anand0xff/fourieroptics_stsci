@@ -82,7 +82,7 @@ def exer3(odir):
         image_intensity = (imagefield*imagefield.conj()).real
         psf = image_intensity / image_intensity.max()  # peak intensity unity
         fits.PrimaryHDU(psf).writeto( 
-            odir+"/c2_ex3_tilt_a_{0:.3f}_b_{1:.3f}.fits".format(tilts[nt][0],tilts[nt][1]), 
+            odir+"/ex3_tilt_a_{0:.3f}_b_{1:.3f}.fits".format(tilts[nt][0],tilts[nt][1]), 
             overwrite=True)
 
 def exer4(odir):
@@ -108,7 +108,7 @@ def exer4(odir):
         image_intensity = (imagefield*imagefield.conj()).real
         psf = image_intensity / image_intensity.max()  # peak intensity unity
         fits.PrimaryHDU(psf).writeto( 
-            odir+"/c2_ex4_tiltPi_a_{0:.3f}_b_{1:.3f}.fits".format(tilts[nt][0],tilts[nt][1]), 
+            odir+"/ex4_tiltPi_a_{0:.3f}_b_{1:.3f}.fits".format(tilts[nt][0],tilts[nt][1]), 
             overwrite=True)
 
 def exer5(odir):
@@ -143,28 +143,34 @@ def exer5(odir):
                     image_intensity = (imagefield*imagefield.conj()).real
                     psf = image_intensity / image_intensity.max()  # peak intensity unity
                     fits.PrimaryHDU(psf).writeto( 
-                         odir+"/c2_ex5_phaseripple_{0:d}acrossD_peak_{1:.1f}.fits".format(nwaves,peak), 
+                         odir+"/ex5_phaseripple_{0:d}acrossD_peak_{1:.1f}.fits".format(nwaves,peak), 
                          overwrite=True)
 
-def class1(tdir):
+def class1(tdir, cstr):
     # create output directory if it does not exist
-    odir = tdir + '/c1'
-    print("   class 1", odir)
+    odir = tdir + '/' +cstr
+    print("   directory", odir)
     if not os.path.exists(odir):
         os.makedirs(odir)
     print("odir", odir)
     exer1(odir)
     exer2(odir)
 
-def class2(tdir):
+def class2(tdir, cstr):
     # create output directory if it does not exist
-    odir = tdir + '/c2'
-    print("   class 2", odir)
+    odir = tdir + '/' +cstr
+    print("   directory", odir)
     if not os.path.exists(odir):
         os.makedirs(odir)
-    print("odir", odir)
     exer3(odir)
     exer4(odir)
+
+def class3(tdir, cstr):
+    # create output directory if it does not exist
+    odir = tdir + '/' +cstr
+    print("   directory", odir)
+    if not os.path.exists(odir):
+        os.makedirs(odir)
     exer5(odir)
 
 if __name__ == "__main__":
@@ -176,9 +182,6 @@ if __name__ == "__main__":
     if not os.path.exists(topdir):
         os.makedirs(topdir)
 
-    print("topdir", topdir)
-    class1(topdir)
-    #class2(topdir)
-
-
-
+    class1(topdir,'c1')
+    class2(topdir,'c2')
+    #lass3(topdir,'c3')
