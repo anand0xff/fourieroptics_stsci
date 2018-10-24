@@ -30,14 +30,14 @@
 
 | Date        | Class #  | Topics
 |:-----------:|:--------:|-------------------------------------------------------------------------|
-|Oct 24       | #1      | Intro, class software, EM waves, scalar field, far field, the Fraunhofer approximation behind Fourier optics.  The Fourier transform.
-|Oct 31       | #2      | Simulating the image plane of a given telescope pupil.  Limits to discrete Fourier transforms: effects of sampling, and finite information input.  Equivalent Width Theorem.
-|Nov 7        | #3      | Matching theory and numerics, PSFs and imaging, asymptotic behavior, apodization,  Nyquist sampling and aliasing, imperfect images, tilt, speckles
+|Oct 24       | #1      | Intro, class software, EM waves, scalar field, far field, the Fraunhofer approximation behind Fourier optics.  The Fourier transform definition.
+|Oct 31       | #2      | (The monochromatic plane wave, the single photon approach). Fourier transform properties (the main theorems), applied to telescopes/imaging.  Simulating the image plane of a given telescope pupil.  Pixel scale.  Detector simulation.  Limits to discrete Fourier transforms: effects of sampling, and finite information input.  Equivalent Width Theorem.
+|Nov 7        | #3      | Matching theory and numerics, PSFs and imaging, asymptotic behavior, apodization, band-limited functions,  Nyquist sampling and aliasing, imperfect images, tilt, speckles
 |Nov 14       | #4      | Wavefront sensing: focus sweeps, Gerchberg Saxton focus-diverse phase retrieval basics
-|Nov 21       | -       | No class
+|Nov 21       | -       | The Lyot coronagraph, classical & band-limited.  The Four Quadrant phase mask coronagraph.  Sketch of Vortex coronagraph.
 |Nov 28       | #5      |
 |Dec 5        | #6      | 
-|Dec 12       | Back-up      | 
+|Dec 12       | Back-up | 
 
 ###Class 1: Theoretical basis, numerical Fourier machinery
 	
