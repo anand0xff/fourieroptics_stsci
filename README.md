@@ -31,7 +31,7 @@
 | Date        | Class #  | Topics
 |:-----------:|:--------:|-------------------------------------------------------------------------|
 |Oct 24       | #1      | Intro, class software, EM waves, scalar field, far field, the Fraunhofer approximation behind Fourier optics.  The Fourier transform definition.
-|Oct 31       | #2      | (The monochromatic plane wave, the single photon approach). Fourier transform properties (the main theorems), applied to telescopes/imaging.  Simulating the image plane of a given telescope pupil.  Pixel scale.  Detector simulation.  Limits to discrete Fourier transforms: effects of sampling, and finite information input.  Equivalent Width Theorem.
+|Oct 31       | #2      | (The monochromatic plane wave, the single photon approach).  Limits to discrete Fourier transforms: effects of sampling, and finite information input.  Fourier transform properties (the main theorems), applied to telescopes/imaging (tilts, shifts).  Simulating the image plane of a given telescope pupil.  Pixel scale.  Detector simulation. Polychromatic imaging.   Equivalent Width Theorem.
 |Nov 7        | #3      | Matching theory and numerics, PSFs and imaging, asymptotic behavior, apodization, band-limited functions,  Nyquist sampling and aliasing, imperfect images, tilt, speckles
 |Nov 14       | #4      | Wavefront sensing: focus sweeps, Gerchberg Saxton focus-diverse phase retrieval basics
 |Nov 21       | -       | The Lyot coronagraph, classical & band-limited.  The Four Quadrant phase mask coronagraph.  Sketch of Vortex coronagraph.
@@ -93,8 +93,16 @@ Describing the pupil quantitatively (eg. equation 2 of the above paper).  If you
 	
 #### Post-class-1 work	
 
-	
-	Look at and run code/telclass.py
+  
+
+- Become well-acquainted with the definition of the convolution of two functions.
+- Become familiar with the **Special functions** notation in the class1/BracewellIII_pp91_92SpecialFunctions.pdf file on our repository.
+- Familiarize yourself with the basic Fourier theorems in the [Fourier transforms page at NRAO](https://www.cv.nrao.edu/course/astr534/FourierTransforms.html).
+- Consider what effect a lateral shift of the pupil has on its Fourier transform, i.e. the image plane **complex amplitude**, and what effect it has on the **image plane intensity**.  Write down a 1-D fourier argument to support your conclusions.
+
+
+
+Look at and run code/telclass.py
 	
 	See how the matrixDFT object is instantiated, a pupil created, and an image complex amplitude ("field") and its intensity are calculated.
 	
