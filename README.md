@@ -82,7 +82,7 @@ Describing the pupil quantitatively (eg. equation 2 of the above paper).  If you
 	
 	Write up a short description of why the images appear as they do.  Consider information content in the two domains, pupil and image.
 	
-	Do the same with exer2().  How does trhis show the difference between a detector pixel and a pointwise value of an image?
+	Do the same with exer2().  How does this show the difference between a detector pixel and a pointwise value of an image?
 	
 	
 I will upload a sample program for creating various phase array creation by the end of today (Oct 24) to help you work through the following exercises:
