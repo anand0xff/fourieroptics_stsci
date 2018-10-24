@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.fits
+*.*swp
 
 # C extensions
 *.so
