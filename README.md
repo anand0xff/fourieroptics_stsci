@@ -76,11 +76,13 @@ Describing the pupil quantitatively (eg. equation 2 of the above paper).  If you
 	
 	Look at and run code/telclass.py
 	
-	See hoe the matrixDFT object is instantiated, a pupil created, and an imasge complex amplitude ("field") and its intensity are calculated.
+	See how the matrixDFT object is instantiated, a pupil created, and an image complex amplitude ("field") and its intensity are calculated.
 	
 	Look through the parameters of exer1() and its output in datadir/c1/ex1*.fits
 	
 	Write up a short description of why the images appear as they do.  Consider information content in the two domains, pupil and image.
+	
+	Do the same with exer2().  How does trhis show the difference between a detector pixel and a pointwise value of an image?
 	
 	
 I will upload a sample program for creating various phase array creation by the end of today (Oct 24) to help you work through the following exercises:
