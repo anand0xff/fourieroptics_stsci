@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 *.fits
 *.*swp
+.DS_Store
 
 # C extensions
 *.so
