@@ -64,10 +64,10 @@ def exer2(odir):
         imageintensity = (imagefield*imagefield.conj()).real
         psf = imageintensity / imageintensity.max()  # normalize to peak intensity unity
         zpsf = scipy.ndimage.zoom(psf, 32//fpnpix, order=0)
-        print(psf.shape, zpsf.shape, fpnpix, 32//fpnpix)
         fits.PrimaryHDU(zpsf).writeto(odir+"/ex2_nfppix{}_zoom{}.fits".format(fpnpix,32//fpnpix), overwrite=True)
 
 def exer3(odir):
+    """ What do phase slopes - tilts - in the pupil plane do? """
     # instantiate an mft object:
     ft = matrixDFT.MatrixFourierTransform()
     npup = 100
@@ -86,6 +86,7 @@ def exer3(odir):
             overwrite=True)
 
 def exer4(odir):
+    """ Precise control of image positioning using phase slopes? """
     # instantiate an mft object:
     ft = matrixDFT.MatrixFourierTransform()
     npup = 100
@@ -111,16 +112,17 @@ def exer4(odir):
             overwrite=True)
 
 def exer5(odir):
+    """ Create ripples of phase aberration in the pupil
+        to simulate the Ruffles Potato Chip Telescope (RPCT) """
     # instantiate an mft object:
     ft = matrixDFT.MatrixFourierTransform()
     npup = 100
     radius = 20.0
     fp_size_reselt = 100
     pupil = utils.makedisk(npup, radius=radius)
-    number_of_waves_across = (2,3,4,5)
+    number_of_waves_across = (2,3,4,5,6)
 
     peaks = (0.0, 0.1, 0.3, 1.0, 3.0) # radians, amplitude of phase ripple
-    nwaves = 4
     arrayshape = (npup, npup)
     diam_pupil = radius*2 # pixels
     center = (arrayshape[0]/2, arrayshape[1]/2)
@@ -147,7 +149,7 @@ def exer5(odir):
 def class1(tdir):
     # create output directory if it does not exist
     odir = tdir + '/c1'
-    print("   ", odir)
+    print("   class 1", odir)
     if not os.path.exists(odir):
         os.makedirs(odir)
     print("odir", odir)
@@ -157,7 +159,7 @@ def class1(tdir):
 def class2(tdir):
     # create output directory if it does not exist
     odir = tdir + '/c2'
-    print("   ", odir)
+    print("   class 2", odir)
     if not os.path.exists(odir):
         os.makedirs(odir)
     print("odir", odir)
@@ -176,7 +178,7 @@ if __name__ == "__main__":
 
     print("topdir", topdir)
     class1(topdir)
-    class2(topdir)
+    #class2(topdir)
 
 
 
