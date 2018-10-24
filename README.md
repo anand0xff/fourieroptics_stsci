@@ -91,14 +91,15 @@ The concept of the **pupil** (or aperture) plane of an optical system, and its i
 	
 Describing the pupil quantitatively (eg. equation 2 of the above paper).  If you create a numpy array that represents a circular mirror telescope without a secondary obstruction, what are the physical dimensions you assign (in your mind) to this in-memory array --- what physical thing does the numerical array span?  What physical quantity is represented by a number (an element) in this numerical array?
 	
-#### Post-class-1 work	
+#### Post-class-1 and pre-class-2 work	
 
   
 
-- Become well-acquainted with the definition of the convolution of two functions.
-- Become familiar with the **Special functions** notation in the class1/BracewellIII_pp91_92SpecialFunctions.pdf file on our repository.
-- Familiarize yourself with the basic Fourier theorems in the [Fourier transforms page at NRAO](https://www.cv.nrao.edu/course/astr534/FourierTransforms.html).
-- Consider what effect a lateral shift of the pupil has on its Fourier transform, i.e. the image plane **complex amplitude**, and what effect it has on the **image plane intensity**.  Write down a 1-D fourier argument to support your conclusions.
+1. Become well-acquainted with the **definition of the convolution** of two functions.
+2. Become familiar with the **Special functions** notation in the class1/BracewellIII_pp91_92SpecialFunctions.pdf file on our repository.
+3. Familiarize yourself with the **basic Fourier theorems** in the [Fourier transforms page at NRAO](https://www.cv.nrao.edu/course/astr534/FourierTransforms.html).
+4. Consider what effect a **lateral shift of the pupil** has on its Fourier transform, i.e. the image plane **complex amplitude**, and what effect it has on the **image plane intensity**.  Write down a simple 1-D theoretical Fourier argument to support your conclusions.
+5. Again, on purely theoretical grounds, what can you do to the pupil cpmplex amplitude to shift the image intensity array off the origin of the image plane?
 
 
 
@@ -112,18 +113,12 @@ Look at and run code/telclass.py
 	
 	Do the same with exer2().  How does this show the difference between a detector pixel and a pointwise value of an image?
 	
+	After attempting or succeeding in answering questions 4 & 5 above, run exer3() and exer4() by uncommenting the call to class2() in the last line of telclass.py.
 	
-I will upload a sample program for creating various phase array creation by the end of today (Oct 24) to help you work through the following exercises:
+	
 
-	Create images (fits files) using a 100x100 pupil array with a pupil radius=20.0, focalplane_size=100, focalplane_npix=100, use a non-zero (always real) phase array.  Create image intesity fits files corresponding to the following cases:
 	
-	phase = a non-zero constant - the "reference" on-axis image.
-	
-	phase = a sloped array of the form a*i + b*j (i,j are indices of the array, a and b constants).  Keep one of them (eg b) at zero, vary a till you see images that differ noticeably from the rference image
-	
-	phase = some sinusoidal function (of i only) - a ripple in the "i" direction.  Use ripples with 2, 3, 4, 5 periods across the "active" pupil (its diameter is 50 pixels, since you used radius=25).  Make the amplitude of the sinusoid 0.1, 0.3, 1, and 3 (these are amplitudes in radians of phase)
-	
-	phase = the sum of a ripple in the "i" direction and one in the "j" direction, with amplitudes of e.g. 0.3
+
 	
 
 	
