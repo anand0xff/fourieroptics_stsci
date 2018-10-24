@@ -1,5 +1,5 @@
-## Fourier Optics Classes 1-4: The Basics
-#### Anand Sivaramakrishan, STScI, 2018 July/August
+## Fourier Optics Classes 1-6: The Basics
+#### Anand Sivaramakrishan, STScI, 2018 Oct-Dec
 
 #### Prerequisites: 
 	astroconda with python 3 on your laptop
@@ -22,6 +22,8 @@
 	After the in-class discussion I will go over points that need clarification or more in-depth understanding.  That, and setting the stage for the next pre-class prep work will take the remaning part of the class.
 	
 	After class you should finish the exercises associated with the prep work (e.g. in an annotated Jupyter notebook).  This notebook will serve as your course notes, and hopefully a valuable reference for you and a lasting legacy of the course.
+	
+	
 	
 
 ### Class Schedule
