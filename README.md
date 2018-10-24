@@ -39,6 +39,26 @@
 |Dec 5        | #6      | 
 |Dec 12       | Back-up | 
 
+
+
+### Book, articles, and links
+
+1. The best textbook for the Fourier part is still R.N. Bracewell, **"The Fourier Transform and Its Applications" ** (Third Edition, Mcgraw-Hill, 2000).  This book is unfortunately out of print and has been so for some time. The remaining stock is expensive. The ** pictorial dictionary of Fourier transforms** is on pp. 573-591.
+
+2. "Introduction to Fourier Optics"  by J. W. Goodman, (McGraw-Hill, second edition,
+    1996 (or any other edition) 
+    
+3. "Principles of Optics" M. Born & E. Wolf, 1975 (Pergamon). A new edition of this ancient classic was announced a few years ago. Even the older editions have all the basic material you are likely to need. This book is the bible for physical optics.  I use the 7th edition.
+
+4. ["Interferometry and Synthesis in Radio
+    Astronomy"](http://adsabs.harvard.edu/abs/2017isra.book.....T) A.R.
+    Thompson, J.M. Moran, & G.W. Swenson, (Springer, 2017). This is the bible
+    for the subject as applied to radio astronomy. PDF downloadable via the
+    link above.
+
+5. [Fourier transforms page at NRAO](https://www.cv.nrao.edu/course/astr534/FourierTransforms.html)  From about 2/3 of the way down and on to the end this fairly short page the basic Fourier transform theorems are laid out well.
+   
+
 ###Class 1: Theoretical basis, numerical Fourier machinery
 	
 This is a hands-on course, but you should have some idea of the theoretical basis for numerical manipulations are, in case you need to delve deeper in the future.  We will go quickly over the basics, and outline how we get to the stage of calculating the response of many optical systems to a point source or a sky scene.
