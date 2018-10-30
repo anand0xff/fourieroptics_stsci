@@ -185,4 +185,3 @@ if __name__ == "__main__":
 
     class1(topdir,'c1')
     class2(topdir,'c2')
-    #lass3(topdir,'c3')
