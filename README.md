@@ -31,8 +31,8 @@
 | Date        | Class #  | Topics
 |:-----------:|:--------:|-------------------------------------------------------------------------|
 |Oct 24       | #1      | Intro, class software, EM waves, scalar field, far field, the Fraunhofer approximation behind Fourier optics.  The Fourier transform definition.
-|Oct 31       | #2      | (The monochromatic plane wave, the single photon approach).  Limits to discrete Fourier transforms: effects of sampling, and finite information input.  Fourier transform properties (the main theorems), applied to telescopes/imaging (tilts, shifts).  Simulating the image plane of a given telescope pupil.  Pixel scale.  Detector simulation. Polychromatic imaging.   Equivalent Width Theorem.
-|Nov 7        | #3      | Matching theory and numerics, PSFs and imaging, asymptotic behavior, apodization, band-limited functions,  Nyquist sampling and aliasing, imperfect images, tilt, speckles
+|Oct 31       | #2      | The monochromatic plane wave, the single photon probability density function meaning of the PSF.  Limits to discrete Fourier transforms: effects of sampling, and finite information input.  Fourier transform properties (the main theorems), applied to telescopes/imaging (tilts, shifts).  Simulating the image plane of a given telescope pupil.  Pixel scale.  Detector simulation. Polychromatic imaging.   The basic Fourier theorems.  The Sampling Theorem.
+|Nov 7        | #3      | Matching theory and numerics,  asymptotic behavior, apodization, band-limited functions,  Nyquist sampling and aliasing, imperfect images, tilt, speckles
 |Nov 14       | #4      | Wavefront sensing: focus sweeps, Gerchberg Saxton focus-diverse phase retrieval basics
 |Nov 21       | -       | The Lyot coronagraph, classical & band-limited.  The Four Quadrant phase mask coronagraph.  Sketch of Vortex coronagraph.
 |Nov 28       | #5      |
@@ -83,7 +83,7 @@ The Fraunhofer or **far field** situation, and the **Fresnel length** that gover
 
 Describing light numerically/mathematically: a plane wave of monochromatic light (in a homogenous or non-dispersive medium or vacuum) is a propagating oscillation of the electric and magnetic fields.  In (x,y,z) physical space z is the direction of propagation.  (x,y) is the plane transverse to the propagation direction.  The wave can be expressed as the real part of a complex number that has a (real) amplitude A(x,y)  and a unit-strength "phasor" exp( j(kz - wt + phi).  
 
-We average over many periods of the waves' oscillation in a typical optical or IR measurement.  We also "follow a wave's crest", and ignore the (kz - wt) in the exponent.  One resource is ApJ vol. 552 pp.397-408, 2001 May 1, Section 2.1 equation 1 and surrounding very short text.
+We average over many periods of the waves' oscillation in a typical optical or IR measurement.  We also "follow a wave's crest", and ignore the (kz - wt) in the exponent.  One resource is [ApJ vol. 552 pp.397-408, 2001 May 1]((https://ui.adsabs.harvard.edu/#abs/2002ApJ...581L..59S)), Section 2.1 equation 1 and surrounding very short text.
 	
 What mathematical/numerical operation must you perform on a complex array describing the EM wave's "complex amplitude" to get a real array describing the **intensity** (brightness) that a CCD or IR array might detect?
 			
@@ -91,13 +91,13 @@ The concept of the **pupil** (or aperture) plane of an optical system, and its i
 	
 Describing the pupil quantitatively (eg. equation 2 of the above paper).  If you create a numpy array that represents a circular mirror telescope without a secondary obstruction, what are the physical dimensions you assign (in your mind) to this in-memory array --- what physical thing does the numerical array span?  What physical quantity is represented by a number (an element) in this numerical array?
 	
-#### Post-class-1 and pre-class-2 work	
+#### Pre-class 2 and class 2 work	
 
   
 
-1. Become well-acquainted with the **definition of the convolution** of two functions.
-2. Become familiar with the **Special functions** notation in the class1/BracewellIII_pp91_92SpecialFunctions.pdf file on our repository.
-3. Familiarize yourself with the **basic Fourier theorems** in the [Fourier transforms page at NRAO](https://www.cv.nrao.edu/course/astr534/FourierTransforms.html).
+1. Become well-acquainted with the **definition of the convolution** of two functions.  How is it applicable to simulating the image of an astronomical scene?
+2. Become familiar with the [Special functions](class1/BracewellIII_pp91_92SpecialFunctions.pdf) notations in the repo - we use these in a "cartoon representation" of Fourier theory.
+3. Familiarize yourself with the [basic Fourier theorems](https://www.cs.unm.edu/~williams/cs530/theorems6.pdf) which is also in [the repo](class1/theorems6.pdf).
 4. Consider what effect a **lateral shift of the pupil** has on its Fourier transform, i.e. the image plane **complex amplitude**, and what effect it has on the **image plane intensity**.  Write down a simple 1-D theoretical Fourier argument to support your conclusions.
 5. Again, on purely theoretical grounds, what can you do to the pupil cpmplex amplitude to shift the image intensity array off the origin of the image plane?
 
@@ -111,12 +111,24 @@ Look at and run code/telclass.py
 	
 	Write up a short description of why the images appear as they do.  Consider information content in the two domains, pupil and image.
 	
-	Do the same with exer2().  How does this show the difference between a detector pixel and a pointwise value of an image?
+	Do the same with exer2().  How does this show the difference between a detector pixel and a pointwise value of a simulated array that is our image intensity?
 	
-	After attempting or succeeding in answering questions 4 & 5 above, run exer3() and exer4() by uncommenting the call to class2() in the last line of telclass.py.
+	After attempting or succeeding in answering questions 4 & 5 above, run exer3(), exer4(), and exer5() by uncommenting the call (if needed) to class2() in the last line of telclass.py.  We will discuss exer3(), exer4(), and exer5() in class.  I put png files of ds9 views of the output fits files in the repo also.
+===	
 	
-	
+### Class 2 plan
 
+- The monochromatic plane wave, the single photon probability density function meaning of the PSF.
+
+- Limits to discrete Fourier transforms: effects of sampling, and finite information input.
+
+-  The basic Fourier theorems.  The Sampling Theorem.
+
+-  Fourier transform properties applied to telescopes/imaging (tilts, shifts, equivalent widths, energy conservation).
+
+- Simulating the image plane of a given telescope pupil.  Pixel scale.  Detector simulation.
+
+- Polychromatic imaging.  
 	
 
 	
