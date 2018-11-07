@@ -31,13 +31,13 @@
 | Date        | Class #  | Topics
 |:-----------:|:--------:|-------------------------------------------------------------------------|
 |Oct 24       | #1      | Intro, class software, EM waves, scalar field, far field, the Fraunhofer approximation behind Fourier optics.  The Fourier transform definition.
-|Oct 31       | #2      | The monochromatic plane wave, the single photon probability density function meaning of the PSF.  Limits to discrete Fourier transforms: effects of sampling, and finite information input.  Fourier transform properties (the main theorems), applied to telescopes/imaging (tilts, shifts).  Simulating the image plane of a given telescope pupil.  Pixel scale.  Detector simulation. Polychromatic imaging.   The basic Fourier theorems.  The Sampling Theorem.
-|Nov 7        | #3      | Matching theory and numerics,  asymptotic behavior, apodization, band-limited functions,  Nyquist sampling and aliasing, imperfect images, tilt, speckles
-|Nov 14       | #4      | Wavefront sensing: focus sweeps, Gerchberg Saxton focus-diverse phase retrieval basics
-|Nov 21       | -       | The Lyot coronagraph, classical & band-limited.  The Four Quadrant phase mask coronagraph.  Sketch of Vortex coronagraph.
-|Nov 28       | #5      |
-|Dec 5        | #6      | 
-|Dec 12       | Back-up | 
+|Oct 31       | #2      | The monochromatic plane wave, the single photon probability density function meaning of the PSF.  Limits to discrete Fourier transforms: effects of sampling, and finite information input.  Fourier transform properties (the main theorems), applied to telescopes/imaging (tilts, shifts).  Simulating the image plane of a given telescope pupil.
+|Nov 7        | #3      | The Lyot coronagraph.
+|Nov 14       | #4      | Aberrations in Lyot coronagraphs.
+|Nov 21       | -       | 
+|Nov 28       | #5      | Spatially-filtered wavefront sensing
+|Dec 5        | #6      | Wavefront sensing: focus sweeps, Gerchberg Saxton focus-diverse phase retrieval basics
+|Dec 12       | Back-up | Suggestions for topics of relevance welcome
 
 
 
@@ -129,11 +129,38 @@ Look at and run code/telclass.py
 - Simulating the image plane of a given telescope pupil.  Pixel scale.  Detector simulation.
 
 - Polychromatic imaging.  
-	
 
-	
 
-	
+### Class 3 plan
+
+How did I take the photograph in class3/Tilt_in_pupil.jpg?  It is unprocessed.
+
+Understand the details of the Convolution and Similarity theorems in class1/theorms6.pdf.  They will be utilized to understand coronagraphy.  Look at e.g. the effects of convolving one function with another - top hat with a Gaussian curve that is much narrower than the top hat, for example - sketch the result. 
+
+Diffraction-limited stellar coronagraphy [SKMBK2001](https://ui.adsabs.harvard.edu/#abs/2001ApJ...552..397S) especially Section 2.1, Fig. 1 and Fig 2.
+
+Application: Earliest system sketch for GPI in Fig. 9.
+
+
+
+
+### Class 4 prep and in-class work	
+
+Look at these questions individually, think about them and/or attempt them. It could be very helpful for you to get together in groups or subgroups before class 4 and discuss the details amonsgt yourselves.  Some of you have more knowledge of coronagraphs than others, so please share your understanding.
+
+Find the definition of a Band Limited function.  This is used in the perfect []Band-Limited coronagraph](http://iopscience.iop.org/article/10.1086/339625/meta).
+
+Understand how the two graphical derivations in Fig. 2 of the paper [Aberration leak](https://ui.adsabs.harvard.edu/#abs/2005ApJ...634.1416S) work.  One is a classical Lyot coronagraph, the other is a band-limited Lyot coronagraph.  
+
+ - In particular, why is it that to first order, a tilt of the incoming wave (placing the star that needs to be suppressed off-center on the occulting focal plane mask) has no light leak through the coronagraph?
+  - Why is it that a quadratic phase error in pupil - a focus phase error - creates what is in effect a faint (and slightly wider) version of the original non-coronagraphic PSF in the final coronagraphic image plane?  Look at Eq. 13, and Fing. 3 in the [Aberration leak](https://ui.adsabs.harvard.edu/#abs/2005ApJ...634.1416S) paper.
+
+
+### Class 5 prep and in-class work	
+
+The Sampling theorem (Nyquist/Shannon, original stronger theorem by Laplace) (class6/SamplingTheorem.pdf).
+
+Spatially-filtered wavefront sensing, speckle theory (class6/rjaspeckle.pdf)
 	
 
 
