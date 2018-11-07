@@ -148,7 +148,7 @@ Application: Earliest system sketch for GPI in Fig. 9.
 
 Look at these questions individually, think about them and/or attempt them. It could be very helpful for you to get together in groups or subgroups before class 4 and discuss the details amonsgt yourselves.  Some of you have more knowledge of coronagraphs than others, so please share your understanding.
 
-Find the definition of a Band Limited function.  This is used in the perfect []Band-Limited coronagraph](http://iopscience.iop.org/article/10.1086/339625/meta).
+Find the definition of a Band Limited function.  This is used in the perfect [Band-Limited coronagraph](http://iopscience.iop.org/article/10.1086/339625/meta).
 
 Understand how the two graphical derivations in Fig. 2 of the paper [Aberration leak](https://ui.adsabs.harvard.edu/#abs/2005ApJ...634.1416S) work.  One is a classical Lyot coronagraph, the other is a band-limited Lyot coronagraph.  
 
