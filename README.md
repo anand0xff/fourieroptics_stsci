@@ -33,7 +33,7 @@
 |Oct 24       | #1      | Intro, class software, EM waves, scalar field, far field, the Fraunhofer approximation behind Fourier optics.  The Fourier transform definition.
 |Oct 31       | #2      | The monochromatic plane wave, the single photon probability density function meaning of the PSF.  Limits to discrete Fourier transforms: effects of sampling, and finite information input.  Fourier transform properties (the main theorems), applied to telescopes/imaging (tilts, shifts).  Simulating the image plane of a given telescope pupil.
 |Nov 7        | #3      | The Lyot coronagraph.
-|Nov 14       | #4      | Aberrations in Lyot coronagraphs.
+|Nov 14       | #4      | Aberrations in Lyot coronagraphs. 
 |Nov 21       | -       | 
 |Nov 28       | #5      | Spatially-filtered wavefront sensing
 |Dec 5        | #6      | Wavefront sensing: focus sweeps, Gerchberg Saxton focus-diverse phase retrieval basics
@@ -154,6 +154,15 @@ Understand how the two graphical derivations in Fig. 2 of the paper [Aberration 
 
  - In particular, why is it that to first order, a tilt of the incoming wave (placing the star that needs to be suppressed off-center on the occulting focal plane mask) has no light leak through the coronagraph?
   - Why is it that a quadratic phase error in pupil - a focus phase error - creates what is in effect a faint (and slightly wider) version of the original non-coronagraphic PSF in the final coronagraphic image plane?  Look at Eq. 13, and Fing. 3 in the [Aberration leak](https://ui.adsabs.harvard.edu/#abs/2005ApJ...634.1416S) paper.
+  
+#### In class and after class:
+
+Low pass and high pass filters in imaging:
+ 
+  - Pupil (stop) filters out **high angular frequency** information in sky image (a.ka. resolution limit).  A finite-sized pupil is a **low pass filter**  A point source is a delta function source in 2D sky angle space (eg RA, Dec).  We only see lower angular frequency components through a finite diameter telescope.
+
+ -  Field stop in an image plane filters out **high spatial frequency** information in pupil. Simulate  Lyot plane intensity with a square hole in the preceding image plane in two cases: send through only three of the Airy rings, or 10 Airy rings).  The field stop is a complement of a Lyot coronagraph's Focal Plane Mask, which lets all high spatial frequency pupil information through but removes the lowest frequencies through.
+ 
 
 
 ### Class 5 prep and in-class work	
