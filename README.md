@@ -161,7 +161,7 @@ Low pass and high pass filters in imaging:
  
   - Pupil (stop) filters out **high angular frequency** information in sky image (a.ka. resolution limit).  A finite-sized pupil is a **low pass filter**  A point source is a delta function source in 2D sky angle space (eg RA, Dec).  We only see lower angular frequency components through a finite diameter telescope.
 
- -  Field stop in an image plane filters out **high spatial frequency** information in pupil. Simulate  Lyot plane intensity with a square hole in the preceding image plane in two cases: send through only three of the Airy rings, or 10 Airy rings).  The field stop is a complement of a Lyot coronagraph's Focal Plane Mask, which lets all high spatial frequency pupil information through but removes the lowest frequencies through.
+ -  Field stop in an image plane filters out **high spatial frequency** information in pupil. Simulate  Lyot plane intensity with a square hole in the preceding image plane in two cases: send through only three of the Airy rings, or 10 Airy rings).  The field stop is a complement of a Lyot coronagraph's Focal Plane Mask, which lets all high spatial frequency pupil information through but removes the lowest frequencies.
  
 
 
