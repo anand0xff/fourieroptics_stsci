@@ -35,7 +35,7 @@
 |Nov 7        | #3      | The Lyot coronagraph.
 |Nov 14       | #4      | Aberrations in Lyot coronagraphs. 
 |Nov 21       | -       | 
-|Nov 28       | #5      | Spatially-filtered wavefront sensing
+|Nov 28       | #5      | Aberrations in the BLC, Spatially-filtered wavefront sensing
 |Dec 5        | #6      | Wavefront sensing: focus sweeps, Gerchberg Saxton focus-diverse phase retrieval basics
 |Dec 12       | Back-up | Suggestions for topics of relevance welcome
 
@@ -154,8 +154,13 @@ Understand how the two graphical derivations in Fig. 2 of the paper [Aberration 
 
  - In particular, why is it that to first order, a tilt of the incoming wave (placing the star that needs to be suppressed off-center on the occulting focal plane mask) has no light leak through the coronagraph?
   - Why is it that a quadratic phase error in pupil - a focus phase error - creates what is in effect a faint (and slightly wider) version of the original non-coronagraphic PSF in the final coronagraphic image plane?  Look at Eq. 13, and Fing. 3 in the [Aberration leak](https://ui.adsabs.harvard.edu/#abs/2005ApJ...634.1416S) paper.
-  
-#### In class and after class:
+   
+
+
+### Class 5 prep and in-class work	
+
+
+#### Before class
 
 Low pass and high pass filters in imaging:
  
@@ -163,9 +168,20 @@ Low pass and high pass filters in imaging:
 
  -  Field stop in an image plane filters out **high spatial frequency** information in pupil. Simulate  Lyot plane intensity with a square hole in the preceding image plane in two cases: send through only three of the Airy rings, or 10 Airy rings).  The field stop is a complement of a Lyot coronagraph's Focal Plane Mask, which lets all high spatial frequency pupil information through but removes the lowest frequencies.
  
+Band-limited coronagraph aberrations:
 
-
-### Class 5 prep and in-class work	
+ - Create your own BLC, with a 250x250 pupil array, 100 pixel diameter (not radius) circular pupil inside it, an FPM that is 1 - Jinc^2() where the jinc^2 has its first zero at about the 5th Airy ring of the PSF in the image plane.  Make sure the FPM array iz zero transmission at its center!  FT the FPM*imagefield to the Lyot pupil plane array (another mft.perform() call), and look at the intensity in that Lyot plane **after** you multiply it with a sensible undersized Lyot stop, cutting out the light at the edges of the pupil.
+ 
+ - Also get the final coronagraphic image intensity after one last mft.perform()
+ 
+ - Next, put in a small phase aberratipon into the incoming wavefromt at the entrance pupil.  Put in a tilt, then a parabola centered in the pupil array (i.e. focus), astigmatism, coma, and see what happens in each separate case to the intesity of light in the Lyot pupil.  Make your rms aberration over the active entrance pupil about 0.2 radians (so the first image's Strehl ratio is ~96%), to stay in the small aberration regime.  I put a **Zernike fitting script** that generates a cube of zernikes in the repository - adjust the pupil size in that code to 100 across (match your active pupil), and you can use those slices for your phase.  Check you have your desired phase rms (multiply them by the appropriate constant to ensure that).
+ 
+ Can you reproduce the sort of behavior you see in the  [Aberration leak](https://ui.adsabs.harvard.edu/#abs/2005ApJ...634.1416S) paper?
+ 
+ This is your coronagraphic train - you can make it a Lyot coronagraph by using a 1 - tophat FPM, with the occulting spot about 10 Airy rings in diameter.  You'll have to play with your Lyot stop undersizing to get the Lyot stop effective in this case.
+ 
+ 
+#### In class
 
 The Sampling theorem (Nyquist/Shannon, original stronger theorem by Laplace) (class6/SamplingTheorem.pdf).
 
