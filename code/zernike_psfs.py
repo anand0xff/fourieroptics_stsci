@@ -25,6 +25,12 @@ def write_zernike_cube(method="poppy"):
         "poppy" calls poppy.zernike.zernike1() function and uses Noll ordering.
         "original" is Anand's original code which reads in a previously created
         "ZfunctionsUnitVar.fits" file made from running ZernikeFitter.py.
+
+    Returns
+    -------
+    psf_cube : array
+        Returns a 36x100x400 cube containing the PSFs and Zernikes used to
+        create them
     """
 
     stddevs = (0.3, 1.0, 3.0)  # in radians - aberration std devs
@@ -73,8 +79,11 @@ def write_zernike_cube(method="poppy"):
 
         psfs[nz, :, nab*npix:] = displayzern * 0.5  # looks better w lower peak
 
-    fits.writeto('zernedPSFcube_{}.fits'.format(method.lower()), psfs.astype(np.float32), overwrite=True)
+    psf_cube = psfs.astype(np.float32)
 
+    fits.writeto('zernedPSFcube_{}.fits'.format(method.lower()), psf_cube, overwrite=True)
+
+    return psf_cube
 
 if __name__ == "__main__":
     write_zernike_cube(method="poppy")
