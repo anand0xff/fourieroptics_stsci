@@ -155,8 +155,8 @@ def exer6(odir):
     npup = 250 # Size of all arrays
     radius = 50.0
 
-    # Numerical reselts in DFT setup cf telescopr reselts:
-    # reselts of telescope - here its 0.4 reselts per DFT output image pixel if noup=250,radius=50.
+    # Numerical reselts in DFT setup cf telescope reselts:
+    # reselts of telescope - here its 0.4 reselts per DFT output image pixel if npup=250,radius=50.
     dftpixel = 2.0 * radius / npup
     # Jinc first zero in reselts of telescope...
     firstzero_optical_reselts = 10.0
@@ -228,7 +228,7 @@ def exer6(odir):
 
     # Write our coronagraph planes:
     planenames, cube = corcube(Cordict)
-    # TBD - write planemames as fits keywords
+    # write planemames as fits keywords
     print(odir+"/ex6_BLC_2ndOrder.fits")
     fits.PrimaryHDU(cube).writeto(odir+"/ex6_BLC_2ndOrder.fits", overwrite=True)
     fobj = fits.open(odir+"/ex6_BLC_2ndOrder.fits")
