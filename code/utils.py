@@ -7,6 +7,7 @@
 
 import sys, os, time
 import numpy as np
+import scipy
 from astropy.io import fits
 
 def makedisk(s, ctr=None, radius=None):
@@ -59,7 +60,8 @@ def centerpoint(s):
        central pixel (odd array) 
        pixel corner (even array)
     """
-    return (0.5*s[0] - 0.5,  0.5*s[1] - 0.5)
+    if hasattr(s, '__iter__'): return (0.5*s[0] - 0.5,  0.5*s[1] - 0.5)
+    else: return (0.5*s - 0.5,  0.5*s - 0.5)
 
 def kwave2d(x,y, **kwargs):
     """
@@ -118,3 +120,16 @@ def phasearrays(npup, tiltlist):
     for t in tiltlist:
         phaselist.append(tiltarray((npup,npup), t))
     return phaselist
+
+def Jinc(x, y, c=None, scale=1.0): # LG++
+    """  Uses pixel coords entirely.  Mathematical, not optical function.
+         To get eg first zero at 12.2 pixels use scale=0.1, viz.  Jinc(x,y,scale=0.1)
+    """
+    rho = np.pi * np.sqrt(pow((x-c[0])/scale,2) + pow((y-c[1])/scale,2))
+    J = 2.0 * scipy.special.jv(1, rho) / rho
+    nanposition=np.where(np.isnan(J)) # Are we hitting a division by zero?
+    if len(nanposition[0] == 0):  J[nanposition] = 1.0
+    return J
+
+
+

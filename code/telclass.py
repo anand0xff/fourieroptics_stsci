@@ -142,9 +142,139 @@ def exer5(odir):
                     imagefield = ft.perform(pupilarray, fp_size_reselt, npup)
                     image_intensity = (imagefield*imagefield.conj()).real
                     psf = image_intensity / image_intensity.max()  # peak intensity unity
-                    fits.PrimaryHDU(psf).writeto( 
-                         odir+"/ex5_phaseripple_{0:d}acrossD_peak_{1:.1f}.fits".format(nwaves,peak), 
+                    fits.PrimaryHDU(peak*kwavedata).writeto( 
+                         odir+"/ex5_pupilarrayripple_{0:d}acrossD_peak_{1:.1f}.fits".format(nwaves,peak), 
                          overwrite=True)
+
+def exer6(odir):
+    """ Coronagraph train, no optimization for speed.  
+    2nd order BLC, didactic example, fftlike """
+    # instantiate an mft object:
+    ft = matrixDFT.MatrixFourierTransform()
+
+    npup = 250 # Size of all arrays
+    radius = 50.0
+
+    # Numerical reselts in DFT setup cf telescopr reselts:
+    # reselts of telescope - here its 0.4 reselts per DFT output image pixel if noup=250,radius=50.
+    dftpixel = 2.0 * radius / npup
+    # Jinc first zero in reselts of telescope...
+    firstzero_optical_reselts = 10.0
+    firstzero_numericalpixels = firstzero_optical_reselts / dftpixel
+    print("Jinc firstzero_numericalpixels", firstzero_numericalpixels)
+
+    jinc = np.fromfunction(utils.Jinc, (npup,npup),
+                           c=utils.centerpoint(npup),
+                           scale=firstzero_numericalpixels)
+    fpm_blc2ndorder = 1 - jinc*jinc
+    print("Jinc fpm min = ", fpm_blc2ndorder.min(), 
+          "Jinc fpm max = ", fpm_blc2ndorder.max())
+
+    # Pupil, Pupilphase, Apodizer, FP intensity, Intensity after FPM, 
+    # Lyot intensity, Lyot Stop, Post-Lyot Stop Intensity, Final image.
+    #
+    # Set up optical train for a typical Lyot style or phase mask coronagraph:
+    Cordict = {
+        "Pupil": utils.makedisk(npup, radius=radius),
+        "Pupilphase": None,
+        "Apodizer": None,
+        "FPintensity": None,
+        "FPM": fpm_blc2ndorder,
+        "LyotIntensity": None,
+        "LyotStop":  utils.makedisk(npup, radius=41),
+        "PostLyotStopIntensity": None,
+        "FinalImage": None,
+        "ContrastImage": None}
+
+
+    # Propagate through the coronagraph train...
+    # Start with perfect incoming plane wave, no aberrations
+    efield = Cordict["Pupil"]
+    # Put in phase aberrations:
+    if Cordict["Pupilphase"] is not None:
+        efield *= np.exp(1j*Cordict["Pupilphase"])
+    # Apodize the entrance pupil:
+    if Cordict["Apodizer"] is not None:
+        efield *= Cordict["Apodizer"]
+    # PROPAGATE TO FIRST FOCAL PLANE:
+    efield = ft.perform(efield, npup, npup)
+    # Store FPM intensity:
+    Cordict["FPintensity"] = (efield * efield.conj()).real
+
+    # Save no-Cor efield for normalization of cor image by peak of no-FPM image
+    efield_NC = efield.copy()
+    # Multiply by FPM transmission function
+    # Lyot style - zero in center, phase mask style: zero integral over domain
+    efield *=  Cordict["FPM"]
+
+    # PROPAGATE TO LYOT PLANE:
+    efield_NC = ft.perform(efield_NC, npup, npup)
+    efield = ft.perform(efield, npup, npup)
+    # Save Cor Lyot intensity;
+    Cordict["LyotIntensity"] = (efield * efield.conj()).real
+    # Apply Lyot stop:
+    if Cordict["LyotStop"] is not None: efield_NC *= Cordict["LyotStop"]
+    if Cordict["LyotStop"] is not None: efield *= Cordict["LyotStop"]
+    # Save Cor Lyot intensity after applying Lyot stop;
+    Cordict["PostLyotStopIntensity"] = (efield * efield.conj()).real
+
+    # PROPAGATE TO FINAL IMAGE PLANE:
+    efield_NC = ft.perform(efield_NC, npup, npup)
+    efield = ft.perform(efield, npup, npup)
+    final_image_intensity_NC = (efield_NC * efield_NC.conj()).real
+    final_image_intensity = (efield * efield.conj()).real
+    Cordict["FinalImage"] = (efield * efield.conj()).real
+    Cordict["ContrastImage"] = (efield * efield.conj()).real / final_image_intensity_NC.max()
+
+    # Write our coronagraph planes:
+    planenames, cube = corcube(Cordict)
+    # TBD - write planemames as fits keywords
+    print(odir+"/ex6_BLC_2ndOrder.fits")
+    fits.PrimaryHDU(cube).writeto(odir+"/ex6_BLC_2ndOrder.fits", overwrite=True)
+    fobj = fits.open(odir+"/ex6_BLC_2ndOrder.fits")
+    fobj[0].header["Pupil"] = 1
+    fobj[0].header["FPI"] = (2, "focal plane Intensity")
+    fobj[0].header["FPM"] = (3, "focal plane mask")
+    fobj[0].header["LyotIntn"] = (4, "Lyot Intensity")
+    fobj[0].header["LyotStop"] = 5
+    fobj[0].header["PostLyot"] = (6, "Post Lyot Stop Intensity")
+    fobj[0].header["CorIm"] = (7, "Raw cor image")
+    fobj[0].header["Contrast"] = (8, "Cor image in contrast units")
+    fobj.writeto(odir+"/ex6_BLC_2ndOrder.fits", overwrite=True)
+
+def corcube(cd):
+    """ Construct cube of relevant coronagraph planes, and their names """
+
+    cdkeylist = [
+        "Pupil",
+        "Pupilphase",
+        "Apodizer",
+        "FPintensity",
+        "FPM",
+        "LyotIntensity",
+        "LyotStop",
+        "PostLyotStopIntensity",
+        "FinalImage",
+        "ContrastImage",
+    ]
+    # How many planes have interesting stuff in them?
+    nplanes=0
+    for k in cdkeylist:
+        if cd[k] is not None: nplanes+=1
+    print(nplanes, "corcube: interesting planes")
+    cube = np.zeros((nplanes, cd["Pupil"].shape[0], cd["Pupil"].shape[0]))
+
+    # Populate the cube with relevant data
+    plane=0
+    planenames = []
+    for k in cdkeylist:
+        if cd[k] is not None: 
+            cube[plane,:,:] = cd[k]
+            plane += 1
+            planenames.append(k)
+    print(planenames)
+    return planenames, cube
+
 
 def class1(tdir, cstr):
     # create output directory if it does not exist
@@ -174,6 +304,14 @@ def class3(tdir, cstr):
         os.makedirs(odir)
     exer5(odir)
 
+def class6(tdir, cstr):
+    # create output directory if it does not exist
+    odir = tdir + '/' +cstr
+    print("   directory", odir)
+    if not os.path.exists(odir):
+        os.makedirs(odir)
+    exer6(odir)
+
 if __name__ == "__main__":
 	
     # create output directory if it does not exist
@@ -183,5 +321,9 @@ if __name__ == "__main__":
     if not os.path.exists(topdir):
         os.makedirs(topdir)
 
+    """
     class1(topdir,'c1')
     class2(topdir,'c2')
+    class3(topdir,'c3')
+    """
+    class6(topdir,'c6')
