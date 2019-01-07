@@ -1,0 +1,30 @@
+"""
+
+Missell Gerchberg Saxton algorithm - focus-diverse phase diversity
+
+After John Krist...
+
+       (a1, phi1)            (a2, phi2)
+       p1 = a1.a1*           p2 = a2.a2*
+
+    start   -->  define initial pupil, common phase term
+                 add delta phase1 to phase  [PUPIL]
+                                      |
+                                      V      ONE
+      FOUR                     -->   fft ->  replace amplitude w/sqrt(PSF1) [IMAGE]
+    Apply pupil ampl constraint                    |
+    subtract delta phase2 from phase               |
+    Add delta phase1 to phase [PUPIL]              |
+           ^                                       |
+           |                                       |
+          fft                                     fft
+           |                                       |
+           |                                       V   TWO
+           |                                 Apply pupil amplitude constraint
+           |                                 Subtract delta phase1 from phase
+           |                                 Add delta phase2 to phase [PUPIL]
+           | THREE            <--- fft -----
+    Replace ampl with sqrt(PSF2)
+     [IMAGE]"""
+
+
