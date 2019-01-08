@@ -1,5 +1,5 @@
-## Fourier Optics Classes 1-6: The Basics
-#### Anand Sivaramakrishan, STScI, 2018 Oct-Dec
+## Fourier Optics Classes 1-8: The Basics
+#### Anand Sivaramakrishan, STScI, 2018 Oct - Jan 2019
 
 #### Prerequisites: 
 	astroconda with python 3 on your laptop
@@ -193,7 +193,8 @@ Spatially-filtered wavefront sensing, speckle theory (class6/rjaspeckle.pdf)
 We covered BLC 2nd order, Strehl ratio, filter coherence length, something on Zernikes & effect on PSF, Maréchal aproximation for SR, JWST Level 2 80% SR requirement in F200M NIRCAM, 
 
 Requests of WFS next few classes: Gerchberg Saxton, Missell Gerchberg Saxton 
-### Class 7  Gerchberg-Saxton in-focus phase retrieval: basic principles, the ideal case.
+### Class 7  Gerchberg-Saxton in-focus phase retrieval
+### Basic principles, the ideal case.
 
 ** Background **
 
@@ -228,9 +229,9 @@ Run the python script gerchbergsaxton.py from the code directory.  It creates ex
 
 The same phase aberration is used to create the images, with different pupils.  The GS algorithm then tries to find the phase aberrations in each case.  It fails in example 0 but succeeds in the others.  I change the pupil geometry, destroying the symmetry the ** gs0__input_pup.fits ** circular pupil.
 
-** Open question: **  Why is that so?  It may be that if one tries several random pupil phase arrays (between +/1 1.5 radians, i.e. about +/1 pi/2) you might get some or many of them to converge to the correct phase.  I have not investigated particular this deeper.
+** Open question: **  Why is that so?  It may be that if one tries several random pupil phase arrays (between +/- 1.5 radians, i.e. about +/- pi/2) you might get some or many of them to converge to the correct phase.  I have not investigated particular case.
 
-There's some degeneracy in a symmetric pupil that allows two phase maps to create the same image intensity pattern.  Can you figure out what that is?  Here's a [hint](https://www.osapublishing.org/DirectPDFAccess/688F3E2B-E320-13E9-03C119CCE8DC3E48_345246/oe-24-14-15506.pdf?da=1&id=345246&seq=0&mobile=no) (early in the introduction.  Can you demonstrate this to yourself mathematically?  Also look at Figure 3 of this paper.)
+There's some degeneracy in a symmetric pupil that allows two phase maps to create the same image intensity pattern.  Can you figure out what that is?  Here's a [hint](https://www.osapublishing.org/oe/abstract.cfm?uri=oe-24-14-15506) (early in the introduction.  Can you demonstrate this to yourself mathematically?  Also look at Figure 3 of this paper.)
 
 The gerchbergsaxton.py script creates noiseless images on a known pixel scale (two things that are not true in real life).  We also know the pupil geometry, another idealization.  Look at the ** gsN__input*.fits ** files: the pupil shapes, the image data, and the (supposedly unknown) pupil phase that we want to measure from the single in-focus image.  
 
