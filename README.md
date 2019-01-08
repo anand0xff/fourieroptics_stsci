@@ -198,7 +198,9 @@ Requests of WFS next few classes: Gerchberg Saxton, Missell Gerchberg Saxton
 
 ** Background **
 
-I did not find any simple textbook explanations for the GS algorithm.  The only ones in books describe the algorithm rather abstractly, very heavy on the mathematics.  I wrote up a few latex pdf summary slides on the GS algorithm,  ** class7_Gerchberg-Saxton_Slides2019.pdf ** in our repository.
+I did not find any simple textbook explanations for the GS algorithm.  The ones I saw in books describe the algorithm rather abstractly, very heavy on the mathematics.  I wrote up a few latex pdf summary slides on the GS algorithm,  ** class7_Gerchberg-Saxton_Slides2019.pdf ** in our repository.  Please go over them before you do the pre-class exercises.  I point to a single short section of ** Thesis_2012_Osherovich.pdf ** (in the class 7 materials) in these slides.  Skim that briefly first (you might want to read that section after you have done the homework).  After you read the slides you can look through the ** GerchbergSaxton ** class in my ** gerchbergsaxton.py ** code for the class.
+
+I put a few other papers and files in the repository, but they are not mandatory reading.
 
 The GS algorithm starts with image data, and a pupil geometry.  We seed it with an initial guess at the phase over pupil.  It then iterates between pupil and image planes, enforcing the known pupil, and the known image information each time. 
 
@@ -209,7 +211,7 @@ The bottom line for us is that the GS algorithm iterates to convergence.  It con
 
 ** GS Exercises to do before class: **
 
-** gerchbergsaxton.py files **
+** gerchbergsaxton.py file nomenclature explanation **
 
 | File name for Example 1   | Description
 |--------------------------:|------------------------------------|
@@ -223,7 +225,7 @@ The bottom line for us is that the GS algorithm iterates to convergence.  It con
 | gs1_puppha.fits           | Cube of pupil phases
 
 
-Run the python script gerchbergsaxton.py from the code directory.  It creates examples of input data, tagged 0-3, and tries to retrieve the input phase.  It uses a __main__ driver to exercise the ** GerchbergSaxton ** class in the same file.  You can use this object in other cases if you wish.
+Run the python script gerchbergsaxton.py from the code directory.  It takes no input parameters.  It creates examples of input data, tagged 0-3, and tries to retrieve the input phase.  It uses a __main__ driver to exercise the ** GerchbergSaxton ** class in the same file.  You can use this object to explore other cases if you need to in the future.  It is written for clarity rather than speed, but it runs quickly enough on the examples I created.
 
 ** Look at example 0 briefly, but focus your attention on example 3. **
 
@@ -231,19 +233,19 @@ The same phase aberration is used to create the images, with different pupils.  
 
 ** Open question: **  Why is that so?  It may be that if one tries several random pupil phase arrays (between +/- 1.5 radians, i.e. about +/- pi/2) you might get some or many of them to converge to the correct phase.  I have not investigated this particular case.
 
-There's some degeneracy in a symmetric pupil that allows two phase maps to create the same image intensity pattern.  Can you figure out what that is?  Here's a [hint](https://www.osapublishing.org/oe/abstract.cfm?uri=oe-24-14-15506) (early in the introduction.  Can you demonstrate this to yourself mathematically?  Also look at Figure 3 of this paper.)
+There's some degeneracy in a symmetric pupil that allows two phase maps to create the same image intensity pattern.  Can you figure out what that is?  Here's the [answer](https://www.osapublishing.org/oe/abstract.cfm?uri=oe-24-14-15506) (in the abstract, and early in the introduction.  Can you demonstrate this to yourself mathematically?  Also look at Figure 3 of this paper.)
 
-The gerchbergsaxton.py script creates noiseless images on a known pixel scale (two things that are not true in real life).  We also know the pupil geometry, another idealization.  Look at the ** gsN__input*.fits ** files: the pupil shapes, the image data, and the (supposedly unknown) pupil phase that we want to measure from the single in-focus image.  
+The gerchbergsaxton.py script creates noiseless images on an exactly known pixel scale (two things that don't hold for real data!).  We also know the exact pupil geometry (another idealization.  Look at the ** gsN__input*.fits ** files: the pupil shapes, the image data, and the (supposedly unknown) pupil phase that we want to measure from the single in-focus image.  
 
-Examine the way the ** gsN_puppha.fits ** phase slices evolve with iterations (I use a ds9 'movie' of the slices).
+Examine the way phase slices in ** gsN_puppha.fits **  evolve with iterations (I use a ds9 'movie' of the slices).
 
-Look at the ** gsN_pupint.fits ** intensity slices' evolution, log scale between approx. 1e-9 and 0.1 to see what's happening *outside the pupil support area*.  Next use a log scale between 0.9 and 1.1 to see how the *inside of the pupil support* behaves.
+Look at the ** gsN_pupint.fits ** intensity slices' evolution, log scale between approx. 1e-9 and 0.1 to see what's happening ** outside the pupil support area **.  Next, use a log scale between 0.9 and 1.1 to see how the ** inside of the pupil support ** behaves.
 
 If you capture the output of the gerchbergsaxton.py script it gives you an iteration-by-iteration account of the way the phase updates evolve.
 
 I stay well below phase-wrapping over 2 pi (a 'technical' problem if it occurs), and avoid asking too much of the GS algorithm (my aberrations are within about quarter of a wave).
 
-Further reading: John Krist on Hubble (focus on comments on non-parametric phase retrieval, GS especialy, p4954 in Krist & Burrows 1995 Applied Optics in the class 7 materials directory)
+Further reading: John Krist on Hubble (focus on comments on non-parametric phase retrieval, GS especially, p4954 in ** Krist & Burrows 1995 Applied Optics ** in the class 7 materials directory).
   
 [Fienup](http://www2.optics.rochester.edu/workgroups/fienup/Publications.htm)'s papers for background and further details, practical cases, for when you might need them.
 
@@ -251,9 +253,9 @@ Further reading: John Krist on Hubble (focus on comments on non-parametric phase
 ### Class 8 MGS loop
 
 TBD: 
-Set up defocus exercises, extend GS object into MGS object
+Set up defocus exercises, extend GS object into MGS object for class 8
 
-For NIRCam DHS, DFS, FICSM, NIRISS GSGS fallback options for coarse, fine phasing, point to papers, TR's & SPIE's. 
+For NIRCam DHS, DFS, NIRISS/NIRcam FICSM, NIRISS GSGS fallback options for coarse, fine phasing, point to papers, TR's & SPIE's. 
 
 
 

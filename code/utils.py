@@ -10,9 +10,22 @@ import numpy as np
 import scipy
 from astropy.io import fits
 
+
+def parabola2d(x,y, **kwargs):
+	cx = kwargs['cx']
+	cy = kwargs['cy'] 
+	return ((x-cx)*(x-cx) + (y-cy)*(y-cy))
+
 def makedisk(s, ctr=None, radius=None):
     return make_ellipse(s, ctr=ctr, ellpars = (radius,radius,0.0))
 
+def centerpoint(s):
+    """ 
+        correct for Jinc, hex transform, 'ff' fringes to place peak in
+            central pixel (odd array) 
+            pixel corner (even array)
+    """
+    return (0.5*s[0] - 0.5,  0.5*s[1] - 0.5)
 
 def makegauss(s, ctr=None, sigma=None):
     # choose a pixel-centric center default for odd-sizes, pixelcornercentric for even
