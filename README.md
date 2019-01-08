@@ -223,7 +223,7 @@ The bottom line for us is that the GS algorithm iterates to convergence.  It con
 | gs1_puppha.fits           | Cube of pupil phases
 
 
-Run the python script gerchbergsaxton.py from the code directory.  It creates examples of input data, tagged 0-3, and tries to retrieve the input phase.  It uses a __main__ driver to exercise the ** GerchbergSaxton class ** in the same file.  You can use this object in other cases if you wish.
+Run the python script gerchbergsaxton.py from the code directory.  It creates examples of input data, tagged 0-3, and tries to retrieve the input phase.  It uses a __main__ driver to exercise the ** GerchbergSaxton ** class in the same file.  You can use this object in other cases if you wish.
 
 ** Look at example 0 briefly, but focus your attention on example 3. **
 
