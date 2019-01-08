@@ -229,7 +229,7 @@ Run the python script gerchbergsaxton.py from the code directory.  It creates ex
 
 The same phase aberration is used to create the images, with different pupils.  The GS algorithm then tries to find the phase aberrations in each case.  It fails in example 0 but succeeds in the others.  I change the pupil geometry, destroying the symmetry the ** gs0__input_pup.fits ** circular pupil.
 
-** Open question: **  Why is that so?  It may be that if one tries several random pupil phase arrays (between +/- 1.5 radians, i.e. about +/- pi/2) you might get some or many of them to converge to the correct phase.  I have not investigated particular case.
+** Open question: **  Why is that so?  It may be that if one tries several random pupil phase arrays (between +/- 1.5 radians, i.e. about +/- pi/2) you might get some or many of them to converge to the correct phase.  I have not investigated this particular case.
 
 There's some degeneracy in a symmetric pupil that allows two phase maps to create the same image intensity pattern.  Can you figure out what that is?  Here's a [hint](https://www.osapublishing.org/oe/abstract.cfm?uri=oe-24-14-15506) (early in the introduction.  Can you demonstrate this to yourself mathematically?  Also look at Figure 3 of this paper.)
 
