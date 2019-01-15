@@ -227,7 +227,9 @@ The bottom line for us is that the GS algorithm iterates to convergence.  It con
 
 Run the python script gerchbergsaxton.py from the code directory.  It takes no input parameters.  It creates examples of input data, tagged 0-3, and tries to retrieve the input phase.  It uses a __main__ driver to exercise the ** GerchbergSaxton ** class in the same file.  You can use this object to explore other cases if you need to in the future.  It is written for clarity rather than speed, but it runs quickly enough on the examples I created.
 
-** Look at example 0 briefly, but focus your attention on example 3. **
+** The Gerchberg-Saxton.ipynb notebook also runs these examples ** (thanks to Keira Brooks for putting the script into ipynb form!  I modified the notebook slightly for more focussed displays with appropriate scales and limits as described below, before uploading it)
+
+** Look at example 0 (which fails) briefly, but focus your attention on example 3 (which succeeds). **
 
 The same phase aberration is used to create the images, with different pupils.  The GS algorithm then tries to find the phase aberrations in each case.  It fails in example 0 but succeeds in the others.  I change the pupil geometry, destroying the symmetry the ** gs0__input_pup.fits ** circular pupil.
 
