@@ -252,12 +252,27 @@ Further reading: John Krist on Hubble (focus on comments on non-parametric phase
 [Fienup](http://www2.optics.rochester.edu/workgroups/fienup/Publications.htm)'s papers for background and further details, practical cases, for when you might need them.
 
 
-### Class 8 MGS loop
+### Class 8 MGS loop: uses same repo directory as class 7.  Phase-diverse Phase Retrieval (PDPR).
 
-TBD: 
-Set up defocus exercises, extend GS object into MGS object for class 8
+I added the MGS algorithm class notes to class 7's notes, because MGS is a natural extension of GS (so it did not make sense to set up the preamble in an identical way in a separate file). 
+**Your task before class  is to flip through the MGS description in class7_Gerchberg-Saxton_Slides2019.pdf.  Follow the step-by-step process of doing one full MGS loop through two defocussed images**.  The new MGS class 8 material follows after last week's class 7 material on GS.  I will go over the details in these slides in class.
 
-For NIRCam DHS, DFS, NIRISS/NIRcam FICSM, NIRISS GSGS fallback options for coarse, fine phasing, point to papers, TR's & SPIE's. 
+I did not write an MGS module.  The step-by-step MGS recipe for phase retrieval using two defocussed images is in my addition to my class7 notes on GS.  That MGS HOW-TO, along with my GS module as an iterative PR code example, should enable you to write an MGS module if you need to at some later date.  I did create an "mgsdataset" in the code which is my way of organizing sets of input files for a full-up MGS phase retrieval.  I did not run the data though an MGS PR scenario in this misellgerchbergsaxton.py code.
+
+I felt it was more important to give you a clear how-to in my notes, and, in addition ** develop your focus-diversity PR intuition ** in class, since this isJWST's baseline fine phasing PR technique.  With this in mind I copied my GS code to misellgerchbergsaxton.py, but only use the **create_input_datafiles_bumps()** and **create_input_datafiles()** routines in it.  The rest of the code can be ignored.  You do not need to run the code or look at it: it is not a clean deliverable.
+
+What is relevant is the two figures I made with the code illustrating the signal present in **pairs of equal-defocus images taken on  either side of focus**.  I will go through some of Dean \& Burrows' figures in class after I explain the MGS theory while going through my step-by-step instructions for an MGS loop.  The **class8_MGS_DiversityChoice_2003_JOSA_DeanBowers.pdf** paper is in the class materials for reference after the class, if you wnt to look deeper into these topics.
+
+**1995_KristAppliedOpticsHSTPhaseRetrieval.pdf** is the standard reference on HST phase retrieval, and contains a wealth of detail and distilled experience.  If you are involved in PDPR and pupil modeling you should go over this article once you understand the basics.
+
+**I will go over these in class**: The figures **class8_DeanBowers2003_signal_vs_defocus_ripple.png** and **class8_DeanBowers2003_signal_vs_defocus_bump.png** show many panels.  Each panel is made from a given wavefront aberration and a pair of defocussed images taken with the same amount of defocus, either side of focus.  I flip and subtract one defocussed image from the other, just for a 'quicklook' at the sort of signal we get with that set-up.  Dean and Bowers discuss the phase ripple case in their paper.  I also did a 'segment piston' case labelled "bump" - what does a sticking-up segment look like at different defocusses??  
+
+In order to examine the information in these images I used a fixed small standard deviation of phase error across the pupil, so the Strehl ratio hit is the same for all images.  I also scaled each difference image by the square of the defocus, a quick and dirty proxy for exposing until each image reached the same brightest pixel value.  Therefore if a pane shows faint structure it does not contain much information on the associated aberration.  If you see clear structure thn those defocus values are useful for pinning down the aberration that I put into the wavefront.  The quicklook processing I did here is akin to curvature wavefront sensing.
+
+Finally, a high level very short overview of JWST WFS\&C stages is given in **class8_Acton-Scott_WAVEFRONT SENSING AND CONTROL FOR THE JAMES WEBB SPACE TELESCOPE.pdf**.  After the course you might want to flip through it if you are not familiar with the stages of JWST's establishing an aligned co-phased telescope after launch.
+
+
+
 
 
 
