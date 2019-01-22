@@ -167,7 +167,7 @@ def create_input_datafiles_bumps(rfn=None):
                 #print('iwav', iwav, 'ifoc', ifoc, 'i:', i)
                 ifoc += 1
         iwav += 1
-    strtop = "Wavefront signal from piston phase bumps across the pupil vs. defocus either side of focus"
+    strtop = "Wavefront signal from piston phase bumps of different diameters vs. defocus either side of focus"
     strbot = "Anand S. 2019, after Dean & Bowers, JOSA A 2003 (figs. 4 & 7)"
     fig.text( 0.02, 0.94, strtop, fontsize=18, weight='bold')
     fig.text(0.02, 0.05, strbot, fontsize=14)
