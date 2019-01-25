@@ -1,8 +1,8 @@
 """
 
-Missell Gerchberg Saxton algorithm - focus-diverse phase diversity
+Missell Gerchberg Saxton algorithm - focus-diverse phase retrieval
 
-After John Krist...
+After John Krist.
 
        (a1, phi1)            (a2, phi2)
        p1 = a1.a1*           p2 = a2.a2*
